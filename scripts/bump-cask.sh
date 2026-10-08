@@ -117,12 +117,12 @@ then
   exit 1
 fi
 
-# From 1.0.1 the app bundle holds the command line tool agent-caffeine.
-# 1.0.0 does not, so the stanza is added by the first bump that reaches 1.0.1.
+# From 1.0.2 the app bundle holds the command line tool agent-caffeine.
+# 1.0.0 does not, so the stanza is added by the first bump that reaches 1.0.2.
 if [[ "${TOKEN}" = "agent-caffeine" ]] && ! grep -q '^  binary ' "${CASK}"
 then
-  OLDEST=$(printf '%s\n%s\n' "1.0.1" "${VERSION}" | sort -V | head -1)
-  if [[ "${OLDEST}" = "1.0.1" ]]
+  OLDEST=$(printf '%s\n%s\n' "1.0.2" "${VERSION}" | sort -V | head -1)
+  if [[ "${OLDEST}" = "1.0.2" ]]
   then
     echo "==> add the binary stanza"
     sed -i '' -E 's|^(  app "agent caffeine\.app")$|\1\
