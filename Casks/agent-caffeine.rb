@@ -1,6 +1,6 @@
 cask "agent-caffeine" do
-  version "1.0.0,14"
-  sha256 "7dd54f79c7fe7ebd6ba96488f51ceb41eab9a2b3f33c9d5532ce71d6b03b5052"
+  version "1.0.1,15"
+  sha256 "f8cae361b3f5123b5d8545177dd961029cb7014a00557a7bb2916322f1b74f6c"
 
   url "https://caffeinagent.com/mac/agent-caffeine-#{version.csv.first}-#{version.csv.second}.dmg"
   name "Agent Caffeine"
