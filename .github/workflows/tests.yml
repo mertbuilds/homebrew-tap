@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  casks:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    steps:
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Check style
+        run: brew style ${{ github.repository_owner }}/tap
+
+      - name: Audit casks
+        run: brew audit --cask --strict --online --tap ${{ github.repository_owner }}/tap
