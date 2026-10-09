@@ -117,19 +117,22 @@ then
   exit 1
 fi
 
-# From 1.0.2 the app bundle holds the command line tool agent-caffeine.
-# 1.0.0 does not, so the stanza is added by the first bump that reaches 1.0.2.
-if [[ "${TOKEN}" = "agent-caffeine" ]] && ! grep -q '^  binary ' "${CASK}"
+# From 1.0.2 the app bundle is named Agent Caffeine.app and holds the command
+# line tool agent-caffeine. 1.0.0 and 1.0.1 are agent caffeine.app without the
+# tool, so the first bump that reaches 1.0.2 renames the app stanza and adds
+# the binary stanza.
+if [[ "${TOKEN}" = "agent-caffeine" ]] && grep -q '^  app "agent caffeine\.app"$' "${CASK}"
 then
   OLDEST=$(printf '%s\n%s\n' "1.0.2" "${VERSION}" | sort -V | head -1)
   if [[ "${OLDEST}" = "1.0.2" ]]
   then
-    echo "==> add the binary stanza"
-    sed -i '' -E 's|^(  app "agent caffeine\.app")$|\1\
-  binary "#{appdir}/agent caffeine.app/Contents/MacOS/agent-caffeine"|' "${CASK}"
-    if ! grep -q '^  binary ' "${CASK}"
+    echo "==> rename the app stanza and add the binary stanza"
+    sed -i '' -E 's|^  app "agent caffeine\.app"$|  app "Agent Caffeine.app"\
+  binary "#{appdir}/Agent Caffeine.app/Contents/MacOS/agent-caffeine"|' "${CASK}"
+    if ! grep -qF '  app "Agent Caffeine.app"' "${CASK}" ||
+       ! grep -qF '  binary "#{appdir}/Agent Caffeine.app/Contents/MacOS/agent-caffeine"' "${CASK}"
     then
-      echo "error: could not add the binary stanza to ${CASK}" >&2
+      echo "error: could not set the app and binary stanzas in ${CASK}" >&2
       exit 1
     fi
   fi
