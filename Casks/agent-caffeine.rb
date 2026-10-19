@@ -1,6 +1,6 @@
 cask "agent-caffeine" do
-  version "1.0.1,15"
-  sha256 "f8cae361b3f5123b5d8545177dd961029cb7014a00557a7bb2916322f1b74f6c"
+  version "1.1.0,27"
+  sha256 "71a78250cf7a3249bf77baf3eaef77d408a60cd9db7a824b6c8ef6339175530a"
 
   url "https://caffeinagent.com/mac/agent-caffeine-#{version.csv.first}-#{version.csv.second}.dmg"
   name "Agent Caffeine"
@@ -15,7 +15,8 @@ cask "agent-caffeine" do
   auto_updates true
   depends_on macos: :ventura
 
-  app "agent caffeine.app"
+  app "Agent Caffeine.app"
+  binary "#{appdir}/Agent Caffeine.app/Contents/MacOS/agent-caffeine"
 
   uninstall launchctl: "com.caffeinagent.app.helper",
             quit:      "com.caffeinagent.app"
