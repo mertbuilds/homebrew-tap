@@ -147,10 +147,10 @@ fi
 
 # brew checks a cask only inside a tap. This folder is linked as a tap with a
 # second name for the checks, so they run on these files and not on the clone
-# that `brew tap mertbuilds/tap` made. The link goes away when the script ends.
+# that `brew tap vinenastudio/tap` made. The link goes away when the script ends.
 export HOMEBREW_NO_AUTO_UPDATE=1
-CHECK_TAP="mertbuilds/tap-bump-check"
-LINK="$(brew --repository)/Library/Taps/mertbuilds/homebrew-tap-bump-check"
+CHECK_TAP="vinenastudio/tap-bump-check"
+LINK="$(brew --repository)/Library/Taps/vinenastudio/homebrew-tap-bump-check"
 if [[ -e "${LINK}" ]] || [[ -L "${LINK}" ]]
 then
   if [[ ! -L "${LINK}" ]]
