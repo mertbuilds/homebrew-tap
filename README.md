@@ -1,20 +1,22 @@
-# mertbuilds tap
+# vinenastudio tap
 
-Homebrew casks for the Mac apps of [mertbuilds](https://mertbuilds.com).
+Homebrew casks for the Mac apps of [Vinena Studio](https://vinena.studio).
 
 ## Install
 
 ```sh
-brew install --cask mertbuilds/tap/agent-caffeine
-brew install --cask mertbuilds/tap/attention-awareness
+brew install --cask vinenastudio/tap/agent-caffeine
+brew install --cask vinenastudio/tap/attention-awareness
 ```
 
 Or add the tap once, then install by name:
 
 ```sh
-brew tap mertbuilds/tap
+brew tap vinenastudio/tap
 brew install --cask agent-caffeine
 ```
+
+This tap moved from `mertbuilds/tap` on 2026-10-25. If you ran `brew tap mertbuilds/tap`, it keeps working through GitHub's redirect.
 
 ## Casks
 
