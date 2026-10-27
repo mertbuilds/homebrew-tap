@@ -6,7 +6,6 @@ Homebrew casks for the Mac apps of [Vinena Studio](https://vinena.studio).
 
 ```sh
 brew install --cask vinenastudio/tap/agent-caffeine
-brew install --cask vinenastudio/tap/attention-awareness
 ```
 
 Or add the tap once, then install by name:
@@ -23,9 +22,9 @@ This tap moved from `mertbuilds/tap` on 2026-10-25. If you ran `brew tap mertbui
 | Cask | App | Needs |
 | --- | --- | --- |
 | `agent-caffeine` | [Agent Caffeine](https://caffeinagent.com) keeps your Mac awake while AI coding agents work. Paid, with a 7 day trial. | macOS 13 or later |
-| `attention-awareness` | [attention awareness](https://attentionawareness.com) supervises your iPhone so that blocked apps and websites stay blocked. Free and open source. | macOS 14 or later, Apple Silicon |
+| `attention-awareness` | [attention awareness](https://attentionawareness.com) supervises your iPhone so that blocked apps and websites stay blocked. Discontinued on 2026-10-27: it still installs and updates itself, and [Wax](https://waxmac.com/?utm_source=github&utm_medium=referral&utm_campaign=homebrew-tap) replaces it. | macOS 14 or later, Apple Silicon |
 
-Both apps are signed and notarized, and both update themselves. To let
+The apps are signed and notarized, and they update themselves. To let
 Homebrew update them too, run `brew upgrade --greedy`.
 
 ## Uninstall
