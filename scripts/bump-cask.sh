@@ -3,7 +3,7 @@
 #
 #   scripts/bump-cask.sh <token> <version> <dmg path or url> [--push]
 #
-#   token    agent-caffeine or attention-awareness
+#   token    agent-caffeine or snug (attention-awareness is discontinued)
 #   version  1.0.1,15 or 1.0.1-15 (version and build). 1.0.1 alone works when
 #            the dmg is named <token>-1.0.1-15.dmg: the build comes from there.
 #   dmg      the released dmg, as a file or as its url. It is only hashed.
@@ -43,6 +43,11 @@ CASK="Casks/${TOKEN}.rb"
 if [[ ! -f "${CASK}" ]]
 then
   echo "error: no cask ${CASK}" >&2
+  exit 1
+fi
+if grep -q '^  deprecate!.*:discontinued' "${CASK}"
+then
+  echo "error: ${TOKEN} is discontinued; it gets no new releases." >&2
   exit 1
 fi
 CASK_CHANGES=$(git status --porcelain -- "${CASK}")
