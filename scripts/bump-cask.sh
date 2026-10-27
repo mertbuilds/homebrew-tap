@@ -45,7 +45,7 @@ then
   echo "error: no cask ${CASK}" >&2
   exit 1
 fi
-if grep -q '^  deprecate!.*:discontinued' "${CASK}"
+if grep -q 'because: :discontinued' "${CASK}"
 then
   echo "error: ${TOKEN} is discontinued; it gets no new releases." >&2
   exit 1
