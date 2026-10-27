@@ -81,9 +81,11 @@ CASK_VERSION="${VERSION},${BUILD}"
 
 WORK=$(mktemp -d)
 LINK=""
+TRUSTED=""
 DONE=0
 cleanup() {
   rm -rf "${WORK}"
+  if [[ -n "${TRUSTED}" ]]; then brew untrust --cask "${TRUSTED}" >/dev/null || true; fi
   if [[ -n "${LINK}" ]] && [[ -L "${LINK}" ]]; then rm -f "${LINK}"; fi
   if [[ "${DONE}" = 0 ]]; then git checkout -q -- "${CASK}" 2>/dev/null || true; fi
 }
@@ -167,8 +169,21 @@ ln -s "${TAP_DIR}" "${LINK}"
 echo "==> brew style"
 brew style "${CHECK_TAP}"
 echo "==> brew audit"
+# Homebrew 7 loads casks from a non-official tap only when they are trusted.
+# Trust the check cask for the audit and untrust it after, because trust.json
+# stays on the runner. A cask that was trusted before stays trusted.
+if ! brew trust --json=v1 | grep -qF "\"${CHECK_TAP}/${TOKEN}\""
+then
+  brew trust --cask "${CHECK_TAP}/${TOKEN}" >/dev/null
+  TRUSTED="${CHECK_TAP}/${TOKEN}"
+fi
 brew audit --cask --strict --online "${CHECK_TAP}/${TOKEN}"
 
+if [[ -n "${TRUSTED}" ]]
+then
+  brew untrust --cask "${TRUSTED}" >/dev/null
+  TRUSTED=""
+fi
 rm -f "${LINK}"
 LINK=""
 
