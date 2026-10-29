@@ -1,6 +1,6 @@
 cask "snug" do
-  version "0.1.1,4"
-  sha256 "14331c52af23737c9ad86675a1947f6f49aaef9e4db0604e747fd2ab3e391871"
+  version "0.1.2,5"
+  sha256 "560731516eb66481bf67e5c3961d7f28a84178f3c531bf3eeacc806bc0b2f677"
 
   url "https://snug.so/mac/snug-#{version.csv.first}-#{version.csv.second}.dmg"
   name "Snug"
